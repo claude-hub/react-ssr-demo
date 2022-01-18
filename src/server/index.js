@@ -1,19 +1,9 @@
-const express = require('express');
-const app = express();
+import express from 'express';
+import template from './template';
 
+const app = express();
 app.get('/', (req, res) => {
-  res.send(
-    `
-   <html>
-     <head>
-       <title>hello</title>
-     </head>
-     <body>
-       <p>hello world!</p>
-     </body>
-   </html>
- `
-  );
+  res.send(template);
 });
 
 app.listen(3001, () => {
