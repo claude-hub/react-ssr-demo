@@ -6,11 +6,13 @@ const changeList = (list) => ({
   list,
 });
 
-export const getHomeList = (server) => {
+export const getHomeList = () => {
   return (dispatch) => {
-    return axios.get('/list.json')
+    return axios.get('http://localhost:3001/list.json')
       .then((res) => {
         dispatch(changeList(res.data))
+      }).catch(err => {
+        console.log(err)
       });
   };
 }

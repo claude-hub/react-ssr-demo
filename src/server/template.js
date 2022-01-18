@@ -2,15 +2,17 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 //重要是要用到StaticRouter
-import { StaticRouter } from 'react-router-dom/server';
-import createStore from '../store';
-import Routes from '../Routes';
+import { StaticRouter } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
+import routers from '../Routes';
 
-const getHtml = (req) => {
+const getHtml = (store, req) => {
   //构建服务端的路由
   const content = renderToString(
-    <Provider store={createStore()}>
-      <StaticRouter location={req.path}>{Routes}</StaticRouter>
+    <Provider store={store}>
+      <StaticRouter location={req.path}>
+        {renderRoutes(routers)}
+      </StaticRouter>
     </Provider>
   );
   return `

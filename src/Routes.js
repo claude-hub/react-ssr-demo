@@ -1,11 +1,18 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
 import Home from './containers/Home';
 import Login from './containers/Login';
 
-export default (
-  <Routes>
-    <Route path='/' exact element={<Home />}></Route>
-    <Route path='/login' exact element={<Login />}></Route>
-  </Routes>
-);
+export default [
+  {
+    path: '/',
+    component: Home,
+    exact: true,
+    loadData: Home.loadData, //服务端获取异步数据的函数
+    key: 'home',
+  },
+  {
+    path: '/login',
+    component: Login,
+    exact: true,
+    key: 'login',
+  },
+];

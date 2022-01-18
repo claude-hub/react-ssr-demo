@@ -21,16 +21,18 @@ const HomeComp = (props) => {
       </p>
 
       <p>以下是请求接口获取到的数据</p>
-      <div>
-        {list.map(item => <p key={item.id}>{item.title}</p>)}
-      </div>
+      {list.map((item) => (
+        <p key={item.id}>{item.title}</p>
+      ))}
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({
-  homeStore: state.home,
-});
+const mapStateToProps = (state) => {
+  return {
+    homeStore: state.home,
+  }
+};
 
 const mapDispatchToProps = (dispatch) => ({
   getList() {
@@ -38,4 +40,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeComp);
+const Home = connect(mapStateToProps, mapDispatchToProps)(HomeComp);
+
+Home.loadData = (store) => {
+  return store.dispatch(getHomeList());
+};
+
+export default Home;
