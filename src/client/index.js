@@ -1,10 +1,16 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import createStore from '../store';
 import Routes from '../Routes';
 
 const App = () => {
-  return <BrowserRouter>{Routes}</BrowserRouter>;
+  return (
+    <Provider store={createStore()}>
+      <BrowserRouter>{Routes}</BrowserRouter>
+    </Provider>
+  );
 };
 
 // hydrate 是 React 中提供在初次渲染的时候，去复用原本已经存在的 DOM 节点，
