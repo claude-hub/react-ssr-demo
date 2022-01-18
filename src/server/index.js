@@ -1,6 +1,6 @@
 import express from 'express';
 import { matchRoutes } from 'react-router-config';
-import createStore from '../store';
+import { getServerStore } from '../store';
 import getHtml from './template';
 import routers from '../Routes';
 
@@ -9,7 +9,7 @@ const app = express();
 app.use(express.static('public'));
 
 app.get('*', (req, res) => {
-  const store = createStore();
+  const store = getServerStore();
   // 调用 matchRoutes 用来匹配当前路由(支持多级路由), 来往store里面加数据
   const matchedRoutes = matchRoutes(routers, req.path);
   // promise 对象数组

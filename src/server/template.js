@@ -15,6 +15,7 @@ const getHtml = (store, req) => {
       </StaticRouter>
     </Provider>
   );
+
   return `
     <html>
       <head>
@@ -22,6 +23,11 @@ const getHtml = (store, req) => {
       </head>
       <body>
         <div id="root">${content}</div>
+        <script>
+          window.context = {
+            state: ${JSON.stringify(store.getState())}
+          }
+        </script>
         <script src="/client.js"></script>
       </body>
     </html>

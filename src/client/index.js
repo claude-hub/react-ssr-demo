@@ -3,12 +3,12 @@ import { hydrate } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
-import createStore from '../store';
+import { getClientStore } from '../store';
 import routers from '../Routes';
 
 const App = () => {
   return (
-    <Provider store={createStore()}>
+    <Provider store={getClientStore()}>
       <BrowserRouter>
         {renderRoutes(routers)}
       </BrowserRouter>

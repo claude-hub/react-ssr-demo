@@ -7,7 +7,13 @@ const reducer = combineReducers({
   home: homeReducer,
 });
 
-export default () => {
-  // 创建store，并引入中间件thunk进行异步操作的管理
-  return createStore(reducer, applyMiddleware(thunk))
-}
+// 服务端的store创建函数
+export const getServerStore = () => {
+  return createStore(reducer, applyMiddleware(thunk));
+};
+
+// 客户端的store创建函数
+export const getClientStore = () => {
+  const defaultState = window.context ? window.context.state : {};
+  return createStore(reducer, defaultState, applyMiddleware(thunk));
+};
