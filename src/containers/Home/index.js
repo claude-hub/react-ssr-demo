@@ -2,8 +2,14 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getHomeList } from './store/actions';
+import styles from './style.css';
 
 const HomeComp = (props) => {
+  // 标识为服务器端渲染
+  if (props.staticContext) {
+    console.log(styles);
+    props.staticContext.css.push(styles._getCss());
+  }
   const { homeStore, getList } = props;
   const { name, list } = homeStore;
   useEffect(() => {
@@ -31,7 +37,7 @@ const HomeComp = (props) => {
 const mapStateToProps = (state) => {
   return {
     homeStore: state.home,
-  }
+  };
 };
 
 const mapDispatchToProps = (dispatch) => ({

@@ -13,4 +13,21 @@ module.exports = merge(base, {
   },
   // 以忽略节点\模块文件夹中的所有模块
   externals: [nodeExternal()],
+  module: {
+    rules: [
+      {
+        test: /\.css?$/,
+        use: [
+          'isomorphic-style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              esModule: false,
+            },
+          },
+        ],
+      },
+    ],
+  },
 });
