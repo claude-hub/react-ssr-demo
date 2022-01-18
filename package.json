@@ -2,6 +2,7 @@
   "scripts": {
     "dev": "npm-run-all --parallel dev:**",
     "dev:start": "nodemon build/server.js",
+    "dev:build:client": "webpack --config ./config/webpack.client.js --watch",
     "dev:build:server": "webpack --config ./config/webpack.server.js --watch"
   },
   "dependencies": {

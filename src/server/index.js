@@ -2,6 +2,9 @@ import express from 'express';
 import template from './template';
 
 const app = express();
+
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
   res.send(template);
 });
